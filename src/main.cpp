@@ -277,36 +277,36 @@ void profiling() {
       }
     }
     RPMEntryData leftMotor1Entry;
-    leftMotor1Entry.rpm = leftMotor1.getVelocity(rpm); // weird error on all getVelocity() calls
+    leftMotor1Entry.rpm = leftMotor1.velocity(rpm); // weird error on all getVelocity() calls
     leftMotor1Entry.timestamp = Brain.Timer.value();
     leftMotor1EntryData.push_back(leftMotor1Entry);
     
     RPMEntryData leftMotor2Entry;
-    leftMotor2Entry.rpm = leftMotor2.getVelocity(rpm);
+    leftMotor2Entry.rpm = leftMotor2.velocity(rpm);
     leftMotor2Entry.timestamp = Brain.Timer.value();
     leftMotor2EntryData.push_back(leftMotor2Entry);
 
 
     RPMEntryData leftMotor3Entry;
-    leftMotor3Entry.rpm = leftMotor3.getVelocity(rpm);
+    leftMotor3Entry.rpm = leftMotor3.velocity(rpm);
     leftMotor3Entry.timestamp = Brain.Timer.value();
     leftMotor3EntryData.push_back(leftMotor3Entry);
     
     
     RPMEntryData rightMotor1Entry;
-    rightMotor1Entry.rpm = rightMotor1.getVelocity(rpm);
+    rightMotor1Entry.rpm = rightMotor1.velocity(rpm);
     rightMotor1Entry.timestamp = Brain.Timer.value();
     rightMotor1EntryData.push_back(rightMotor1Entry);
     
 
     RPMEntryData rightMotor2Entry;
-    rightMotor2Entry.rpm = rightMotor2.getVelocity(rpm);
+    rightMotor2Entry.rpm = rightMotor2.velocity(rpm);
     rightMotor2Entry.timestamp = Brain.Timer.value();
     rightMotor2EntryData.push_back(rightMotor2Entry);
 
 
     RPMEntryData rightMotor3Entry;
-    rightMotor3Entry.rpm = rightMotor3.getVelocity(rpm);
+    rightMotor3Entry.rpm = rightMotor3.velocity(rpm);
     rightMotor3Entry.timestamp = Brain.Timer.value();
     rightMotor3EntryData.push_back(rightMotor3Entry);
     counter++;
