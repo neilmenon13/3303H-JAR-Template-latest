@@ -1,6 +1,18 @@
 #include "vex.h"
-
+#include "vex_motor.h"
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <thread>
+#include <string>
 using namespace vex;
+
+class RPMEntryData {
+  public:
+  double rpm;
+  double timestamp;
+};
+
 competition Competition;
 
 /*---------------------------------------------------------------------------*/
@@ -181,7 +193,7 @@ void pre_auton() {
     } else if (current_auton_selection == 8){
       current_auton_selection = 0;
     }
-    task::sleep(10);
+    wait(10, msec);
   }
 }
 
@@ -220,6 +232,86 @@ void autonomous(void) {
       holonomic_odom_test();
       break;
  }
+}
+
+void profiling() {
+  // data entries
+  std::vector<RPMEntryData> leftMotor1EntryData = {};
+  std::vector<RPMEntryData> leftMotor2EntryData = {};
+  std::vector<RPMEntryData> leftMotor3EntryData = {};
+  std::vector<RPMEntryData> rightMotor1EntryData = {};
+  std::vector<RPMEntryData> rightMotor2EntryData = {};
+  std::vector<RPMEntryData> rightMotor3EntryData = {};
+  std::fstream DataFile("data.txt");
+  int counter = 0;
+  while (true) {
+    if (counter == 30) {
+      counter = 0;
+      // clear data entries
+      leftMotor1EntryData.clear();
+      leftMotor2EntryData.clear();
+      leftMotor3EntryData.clear();
+      rightMotor1EntryData.clear();
+      rightMotor2EntryData.clear();
+      rightMotor3EntryData.clear();
+      for (int i = 0; i < leftMotor1EntryData.size(); i++) {
+        char* str = "";
+        sprintf(
+          "(%d, %d),(%d, %d),(%d, %d),(%d, %d),(%d, %d),(%d, %d) ",
+          str,
+          leftMotor1EntryData.at(i).rpm,
+          leftMotor1EntryData.at(i).timestamp,
+          leftMotor2EntryData.at(i).rpm,
+          leftMotor2EntryData.at(i).timestamp,
+          leftMotor3EntryData.at(i).rpm,
+          leftMotor3EntryData.at(i).timestamp,
+          rightMotor1EntryData.at(i).rpm,
+          rightMotor1EntryData.at(i).timestamp,
+          rightMotor2EntryData.at(i).rpm,
+          rightMotor2EntryData.at(i).timestamp,
+          rightMotor3EntryData.at(i).rpm,
+          rightMotor3EntryData.at(i).timestamp
+        );
+
+        DataFile << str; // write to data file
+      }
+    }
+    RPMEntryData leftMotor1Entry;
+    leftMotor1Entry.rpm = leftMotor1.getVelocity(rpm); // weird error on all getVelocity() calls
+    leftMotor1Entry.timestamp = Brain.Timer.value();
+    leftMotor1EntryData.push_back(leftMotor1Entry);
+    
+    RPMEntryData leftMotor2Entry;
+    leftMotor2Entry.rpm = leftMotor2.getVelocity(rpm);
+    leftMotor2Entry.timestamp = Brain.Timer.value();
+    leftMotor2EntryData.push_back(leftMotor2Entry);
+
+
+    RPMEntryData leftMotor3Entry;
+    leftMotor3Entry.rpm = leftMotor3.getVelocity(rpm);
+    leftMotor3Entry.timestamp = Brain.Timer.value();
+    leftMotor3EntryData.push_back(leftMotor3Entry);
+    
+    
+    RPMEntryData rightMotor1Entry;
+    rightMotor1Entry.rpm = rightMotor1.getVelocity(rpm);
+    rightMotor1Entry.timestamp = Brain.Timer.value();
+    rightMotor1EntryData.push_back(rightMotor1Entry);
+    
+
+    RPMEntryData rightMotor2Entry;
+    rightMotor2Entry.rpm = rightMotor2.getVelocity(rpm);
+    rightMotor2Entry.timestamp = Brain.Timer.value();
+    rightMotor2EntryData.push_back(rightMotor2Entry);
+
+
+    RPMEntryData rightMotor3Entry;
+    rightMotor3Entry.rpm = rightMotor3.getVelocity(rpm);
+    rightMotor3Entry.timestamp = Brain.Timer.value();
+    rightMotor3EntryData.push_back(rightMotor3Entry);
+    counter++;
+    wait(1, seconds);
+  }
 }
 
 /*---------------------------------------------------------------------------*/
@@ -284,7 +376,9 @@ int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-
+  thread proflingThread(profiling);
+  // start profiling background thread (volatile, mutex may be needed in the future)
+  proflingThread.detach();
   // Run the pre-autonomous function.
   pre_auton();
 
