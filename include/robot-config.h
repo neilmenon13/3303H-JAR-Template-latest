@@ -6,7 +6,8 @@ extern brain Brain;
 //extern motor LeftFront;
 
 //Add your devices below, and don't forget to do the same in robot-config.cpp:
-
+extern digital_out matchloader;
+extern digital_out outputblocker; 
 
 
 void  vexcodeInit( void );

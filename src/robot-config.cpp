@@ -6,6 +6,8 @@ using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen.
 brain  Brain;
+digital_out matchloader = digital_out(Brain.ThreeWirePort.G);
+digital_out outputblocker = digital_out(Brain.ThreeWirePort.F);
 
 //The motor constructor takes motors as (port, ratio, reversed), so for example
 //motor LeftFront = motor(PORT1, ratio6_1, false);

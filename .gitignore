@@ -7,3 +7,8 @@ compile_commands.json
 
 /.site
 /.github
+
+/.vscode
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+.vscode/vex_project_settings.json

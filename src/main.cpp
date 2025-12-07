@@ -51,8 +51,7 @@ motor rightMotor3 = motor(PORT18, ratio6_1, true);
 motor intakeMotor = motor(PORT9, ratio6_1, false);
 motor outtakeMotor = motor(PORT10, ratio6_1, true);
 controller Controller = controller(primary);
-digital_out matchloader = digital_out(Brain.ThreeWirePort.G);
-digital_out outputblocker = digital_out(Brain.ThreeWirePort.F);
+
 bool matchloader_status = false;
 bool outputblocker_status = false;
 
