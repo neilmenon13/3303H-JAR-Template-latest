@@ -223,36 +223,102 @@ void pre_auton() {
 
 
 void rightMiddle() {
+  outputblocker.set(true);
+  //move forward 28.7 inche
   // starts from park zone corner, the bot's left bottom corner touches the park zone's right top corner
   chassis.set_drive_constants(9, 1.5, 0, 10, 0);
   // goes to and intakes 3 balls
-  intakeMotor.spin(forward, 60, percent);
-  LeftDriveSmart.setVelocity(20, percent);
-  RightDriveSmart.setVelocity(20, percent);
-  chassis.drive_distance(13);
-  chassis.turn_to_angle(30);
-  chassis.drive_distance(13.5, 30, 2, 2);
-  wait(0.5, seconds);
-  // go to middle goal bottom
-  LeftDriveSmart.setVelocity(35, percent);
-  RightDriveSmart.setVelocity(35, percent);
-  chassis.turn_to_angle(-45);
-  chassis.drive_distance(9);
-  // loads bottom middle goal
-  intakeMotor.spin(reverse, 60, percent);
-  wait(2.1, seconds);
+  LeftDriveSmart.setVelocity(80,percent);
+  RightDriveSmart.setVelocity(80,percent);
+  chassis.drive_distance(13.842);
+  chassis.turn_to_angle(32.1);
+  //drives to center to get the balls
+  intakeMotor.spin(forward, 100, percent);
+  LeftDriveSmart.setVelocity(30, percent);
+  RightDriveSmart.setVelocity(30, percent);
+  chassis.drive_distance(10.72);
+  wait(0.1, seconds);
+  intakeMotor.stop();
+  //stops intake
+  chassis.turn_to_angle(32.1+106.5);
   LeftDriveSmart.setVelocity(90, percent);
   RightDriveSmart.setVelocity(90, percent);
-  chassis.drive_distance(2.5);
-
-  // goes to right loader and turns around to intake from loader
-  chassis.drive_distance(-46.5);
+  chassis.drive_distance(38.3);
   chassis.turn_to_angle(180);
+  //goes to loader
+  intakeMotor.spin(forward, 100, percent);
+  chassis.drive_distance(-5);
+  //drops matchloader and collects balls
+  matchloader.set(true);
+  wait(0.1, seconds);
+  LeftDriveSmart.setVelocity(100, percent);
+  RightDriveSmart.setVelocity(100, percent);
+  chassis.drive_distance(10.318);
+  wait(0.5, seconds);
+  chassis.drive_distance(-5.318);
+  matchloader.set(false);
+  //drives back and pulls matchloader up
+  intakeMotor.stop();
+  //stops intake
+  wait(0.1, seconds);
+  chassis.drive_distance(-23);
+  wait(0.1, seconds);
+  intakeMotor.spin(forward, 100, percent);
+  outtakeMotor.spin(forward, 100, percent);
+  // goes and scores in long goal
+
+  // // go to middle goal bottom
+  // LeftDriveSmart.setVelocity(35, percent);
+  // RightDriveSmart.setVelocity(35, percent);
+  // chassis.turn_to_angle(-45);
+  // chassis.drive_distance(9);
+  // // loads bottom middle goal
+  // intakeMotor.spin(reverse, 60, percent);
+  // wait(2.1, seconds);
+  // LeftDriveSmart.setVelocity(90, percent);
+  // RightDriveSmart.setVelocity(90, percent);
+  // chassis.drive_distance(2.5);
+
+  // // goes to right loader and turns around to intake from loader
+  // chassis.drive_distance(-46.5);
+  // chassis.turn_to_angle(180);
   
-  loader();
+  // loader();
 }
 
 
+void cheese() {
+  // descores parking zone and parks
+  chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  LeftDriveSmart.setVelocity(80,percent);
+  RightDriveSmart.setVelocity(80,percent);
+  chassis.drive_distance(18);
+}
+
+void spicyCheese() {
+  // descores parking zone and parks
+  chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  LeftDriveSmart.setVelocity(80,percent);
+  RightDriveSmart.setVelocity(80,percent);
+  chassis.drive_distance(18);
+  wait(1, sec);
+  chassis.drive_distance(-10);
+}
+void spicyCheeseWithJalapeñoBits() {
+  // descores parking zone and parks
+  chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  LeftDriveSmart.setVelocity(80,percent);
+  RightDriveSmart.setVelocity(80,percent);
+  chassis.drive_distance(18);
+  wait(1, sec);
+  chassis.drive_distance(-10);
+  wait(0.5, sec);
+  chassis.turn_to_angle(-90);
+  chassis.drive_distance(12);
+
+
+}
+// if you need the accented n for future purposes: ñ
 /**
  * Auton function, which runs the selected auton. Case 0 is the default,
  * and will run in the brain screen goes untouched during preauton. Replace
@@ -261,33 +327,7 @@ void rightMiddle() {
  */
 
 void autonomous(void) {
-  auto_started = true;
-  switch(current_auton_selection){ 
-    case 0:
-      drive_test();
-      break;
-    case 1:         
-      drive_test();
-      break;
-    case 2:
-      turn_test();
-      break;
-    case 3:
-      swing_test();
-      break;
-    case 4:
-      full_test();
-      break;
-    case 5:
-      odom_test();
-      break;
-    case 6:
-      tank_odom_test();
-      break;
-    case 7:
-      holonomic_odom_test();
-      break;
- }
+ rightMiddle();
 }
 
 void profiling() {
