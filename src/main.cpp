@@ -309,6 +309,9 @@ void rightMiddle() {
   wait(0.5, seconds);
   LeftDriveSmart.setVelocity(67, percent);
   RightDriveSmart.setVelocity(67, percent);
+  // Sets the chassis' drive exit conditions:
+  // (1.5, 300, 500) = Stop driving if error is less than 1.5 inches, or speed is less than 300 deg/sec, or after 500 ms timeout.
+  // This function ensures the robot stops precisely or safely, preventing overruns in the physical field.
   chassis.set_drive_exit_conditions(1.5, 300, 500);
   chassis.drive_distance(10.15);
   wait(0.5, seconds);
@@ -388,74 +391,124 @@ void spicyCheeseWithJalapeñoBits() {
  */
 
 void skills() {
+  // chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  // LeftDriveSmart.setVelocity(80,percent);
+  // RightDriveSmart.setVelocity(80,percent);
+  // chassis.drive_distance(46.654);
+  // wait(0.5, seconds);
+  // chassis.turn_to_angle(270);
+  // wait(0.3, seconds);
+  // //* INTAKE FROM FIRST LOADER *//
+  // // activate matchloader
+  // matchloader.set(true);
+  // // start intake
+  // intakeMotor.spin(forward, 100, percent);
+  // chassis.drive_distance(12.223);
+  // wait(1.5, seconds);
+  // matchloader.set(false);
+  // wait(0.5, seconds);
+  // chassis.drive_distance(-12.223);
+  // intakeMotor.stop();
+  // wait(0.5, seconds);
+  // // stop intake
+  // chassis.turn_to_angle(180);
+  // wait(0.5, seconds);
+  // chassis.drive_distance(12.989);
+  // wait(0.5, seconds);
+  // chassis.turn_to_angle(90);
+  // wait(0.5, seconds);
+  // chassis.drive_distance(89.534);
+  // wait(0.5, seconds);
+  // chassis.turn_to_angle(0);
+  // wait(0.5, seconds);
+  // chassis.drive_distance(13.96);
+  // wait(0.5, seconds);
+  // chassis.turn_to_angle(90);
+  // wait(0.5, seconds);
+  // LeftDriveSmart.setVelocity(70, percent);
+  // RightDriveSmart.setVelocity(70, percent);
+  // chassis.drive_distance(-12.366);
+  // wait(.5, seconds);
+  // //* OUTTAKE FIRST 6 BALLS INTO LONG GOAL *//
+  // outtakeMotor.spin(forward, 100, percent);
+  // intakeMotor.spin(forward, 100, percent);
+  // wait(2, seconds);
+  // outtakeMotor.stop();
+  // //* INTAKE FROM SECOND LOADER *//
+  // matchloader.set(true);
+  // LeftDriveSmart.setVelocity(80, percent);
+  // RightDriveSmart.setVelocity(80, percent);
+  // wait(0.5, seconds);
+  // chassis.drive_distance(23);
+  // LeftDriveSmart.setVelocity(50, percent);
+  // RightDriveSmart.setVelocity(50, percent);
+  // wait(0.1, seconds);
+  // chassis.drive_distance(4.8);
+  // wait(1.5, seconds);
+  // intakeMotor.stop();
+  // LeftDriveSmart.setVelocity(80, percent);
+  // RightDriveSmart.setVelocity(80, percent);
+  // chassis.drive_distance(23);
+  // LeftDriveSmart.setVelocity(50, percent);
+  // RightDriveSmart.setVelocity(50, percent);
+  // wait(0.1, seconds);
+  // chassis.drive_distance(4.8);
+  // wait(0.5, seconds);
+  // outtakeMotor.spin(forward, 100, percent);
+  // intakeMotor.spin(forward, 100, percent);
+  // wait(2, seconds);
+  // outtakeMotor.stop();
+  // intakeMotor.stop();
+  // //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
+
   chassis.set_drive_constants(9, 1.5, 0, 10, 0);
-  LeftDriveSmart.setVelocity(80,percent);
-  RightDriveSmart.setVelocity(80,percent);
-  chassis.drive_distance(46.654);
-  wait(0.5, seconds);
-  chassis.turn_to_angle(270);
-  wait(0.3, seconds);
-  //* INTAKE FROM FIRST LOADER *//
-  // activate matchloader
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(47.26);
+  chassis.turn_to_angle(90);
   matchloader.set(true);
-  // start intake
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(11.187);
   intakeMotor.spin(forward, 100, percent);
-  chassis.drive_distance(12.223);
   wait(1.5, seconds);
+  chassis.drive_distance(-11.187);
+  chassis.set_drive_exit_conditions(1.5, 300, 5000);
   matchloader.set(false);
-  wait(0.5, seconds);
-  chassis.drive_distance(-12.223);
-  intakeMotor.stop();
-  wait(0.5, seconds);
-  // stop intake
-  chassis.turn_to_angle(180);
-  wait(0.5, seconds);
-  chassis.drive_distance(12.989);
-  wait(0.5, seconds);
-  chassis.turn_to_angle(90);
-  wait(0.5, seconds);
-  chassis.drive_distance(89.534);
-  wait(0.5, seconds);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
   chassis.turn_to_angle(0);
-  wait(0.5, seconds);
-  chassis.drive_distance(13.96);
-  wait(0.5, seconds);
-  chassis.turn_to_angle(90);
-  wait(0.5, seconds);
-  LeftDriveSmart.setVelocity(70, percent);
-  RightDriveSmart.setVelocity(70, percent);
-  chassis.drive_distance(-12.366);
-  wait(.5, seconds);
-  //* OUTTAKE FIRST 6 BALLS INTO LONG GOAL *//
+  chassis.drive_distance(11.187);
+  chassis.turn_to_angle(-90);
+  chassis.drive_distance(85.158);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(11.187);
+  chassis.turn_to_angle(-90);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(-9.36);
   outtakeMotor.spin(forward, 100, percent);
   intakeMotor.spin(forward, 100, percent);
   wait(2, seconds);
-  outtakeMotor.stop();
-  //* INTAKE FROM SECOND LOADER *//
+  outtakeMotor.stop()
+  chassis.set_drive_exit_conditions(1.5, 300, 5000);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(18);
   matchloader.set(true);
-  LeftDriveSmart.setVelocity(80, percent);
-  RightDriveSmart.setVelocity(80, percent);
-  wait(0.5, seconds);
-  chassis.drive_distance(23);
-  LeftDriveSmart.setVelocity(50, percent);
-  RightDriveSmart.setVelocity(50, percent);
-  wait(0.1, seconds);
-  chassis.drive_distance(4.8);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(11);
   wait(1.5, seconds);
   intakeMotor.stop();
-  LeftDriveSmart.setVelocity(80, percent);
-  RightDriveSmart.setVelocity(80, percent);
-  chassis.drive_distance(23);
-  LeftDriveSmart.setVelocity(50, percent);
-  RightDriveSmart.setVelocity(50, percent);
-  wait(0.1, seconds);
-  chassis.drive_distance(4.8);
-  wait(0.5, seconds);
+  chassis.drive_distance(-11);
+  matchloader.set(false);
+  chassis.drive_distance(-18);
   outtakeMotor.spin(forward, 100, percent);
   intakeMotor.spin(forward, 100, percent);
-  wait(2, seconds);
-  outtakeMotor.stop();
-  intakeMotor.stop();
   //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
 }
 
@@ -465,6 +518,14 @@ void autonomous(void) {
 
 void profiling() {
   // data entries
+  chassis.drive_distance(89.534);
+  wait(0.5, seconds);
+  chassis.turn_to_angle(0);
+  wait(0.5, seconds);
+  chassis.drive_distance(13.96);
+  wait(0.5, seconds);
+  chassis.turn_to_angle(90);
+  wait(0.5, seconds);
   std::vector<RPMEntryData> leftMotor1EntryData = {};
   std::vector<RPMEntryData> leftMotor2EntryData = {};
   std::vector<RPMEntryData> leftMotor3EntryData = {};
