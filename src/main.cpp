@@ -492,7 +492,7 @@ void skills() {
   outtakeMotor.spin(forward, 100, percent);
   intakeMotor.spin(forward, 100, percent);
   wait(2, seconds);
-  outtakeMotor.stop()
+  outtakeMotor.stop();
   chassis.set_drive_exit_conditions(1.5, 300, 5000);
   LeftDriveSmart.setVelocity(100,percent);
   RightDriveSmart.setVelocity(100,percent);
@@ -669,9 +669,9 @@ int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
-  thread proflingThread(profiling);
+  // thread proflingThread(profiling);
   // start profiling background thread (volatile, mutex may be needed in the future)
-  proflingThread.detach();
+  // proflingThread.detach();
   // Run the pre-autonomous function.
   pre_auton();
 
