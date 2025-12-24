@@ -8,6 +8,7 @@ using code = vision::code;
 brain  Brain;
 digital_out matchloader = digital_out(Brain.ThreeWirePort.G);
 digital_out outputblocker = digital_out(Brain.ThreeWirePort.F);
+digital_out descorer = digital_out(Brain.ThreeWirePort.A);
 
 //The motor constructor takes motors as (port, ratio, reversed), so for example
 //motor LeftFront = motor(PORT1, ratio6_1, false);

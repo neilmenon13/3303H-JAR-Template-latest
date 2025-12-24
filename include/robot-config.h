@@ -8,6 +8,7 @@ extern brain Brain;
 //Add your devices below, and don't forget to do the same in robot-config.cpp:
 extern digital_out matchloader;
 extern digital_out outputblocker; 
+extern digital_out descorer;
 
 
 void  vexcodeInit( void );

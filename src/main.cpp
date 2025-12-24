@@ -52,6 +52,7 @@ motor_group RightDriveSmart = motor_group(rightMotor1, rightMotor2, rightMotor3)
 
 bool matchloader_status = false;
 bool outputblocker_status = false;
+bool descorer_status = false;
 
 Drive chassis(
 
@@ -462,54 +463,76 @@ void skills() {
   // //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
 
   chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  outputblocker.set(true);
   LeftDriveSmart.setVelocity(100,percent);
   RightDriveSmart.setVelocity(100,percent);
+  LeftDriveSmart.stop(hold);
+  RightDriveSmart.stop(hold);
   chassis.drive_distance(47.26);
   chassis.turn_to_angle(90);
   matchloader.set(true);
+  wait(0.7, seconds);
   LeftDriveSmart.setVelocity(67,percent);
   RightDriveSmart.setVelocity(67,percent);
   chassis.set_drive_exit_conditions(1.5, 300, 500);
-  chassis.drive_distance(11.187);
+  chassis.drive_distance(13.5);
   intakeMotor.spin(forward, 100, percent);
-  wait(1.5, seconds);
-  chassis.drive_distance(-11.187);
+  wait(3, seconds);
+  chassis.drive_distance(-13.5);
   chassis.set_drive_exit_conditions(1.5, 300, 5000);
   matchloader.set(false);
-  LeftDriveSmart.setVelocity(100,percent);
-  RightDriveSmart.setVelocity(100,percent);
-  chassis.turn_to_angle(0);
-  chassis.drive_distance(11.187);
-  chassis.turn_to_angle(-90);
-  chassis.drive_distance(85.158);
-  chassis.turn_to_angle(180);
-  chassis.drive_distance(11.187);
-  chassis.turn_to_angle(-90);
-  LeftDriveSmart.setVelocity(67,percent);
-  RightDriveSmart.setVelocity(67,percent);
-  chassis.set_drive_exit_conditions(1.5, 300, 500);
-  chassis.drive_distance(-9.36);
-  outtakeMotor.spin(forward, 100, percent);
-  intakeMotor.spin(forward, 100, percent);
-  wait(2, seconds);
-  outtakeMotor.stop();
-  chassis.set_drive_exit_conditions(1.5, 300, 5000);
-  LeftDriveSmart.setVelocity(100,percent);
-  RightDriveSmart.setVelocity(100,percent);
-  chassis.drive_distance(18);
-  matchloader.set(true);
-  LeftDriveSmart.setVelocity(67,percent);
-  RightDriveSmart.setVelocity(67,percent);
-  chassis.set_drive_exit_conditions(1.5, 300, 500);
-  chassis.drive_distance(11);
-  wait(1.5, seconds);
   intakeMotor.stop();
-  chassis.drive_distance(-11);
-  matchloader.set(false);
-  chassis.drive_distance(-18);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(13.887);
+  chassis.turn_to_angle(-90);
+  chassis.drive_distance(80);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(15.887);
+  chassis.turn_to_angle(-90);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(-11.2);
   outtakeMotor.spin(forward, 100, percent);
   intakeMotor.spin(forward, 100, percent);
-  //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
+  wait(3, seconds);
+  outtakeMotor.stop();
+  matchloader.set(true);
+  chassis.drive_distance(29);
+  // chassis.turn_to_angle(0);
+  // chassis.drive_distance(-13.887);
+  // chassis.turn_to_angle(-90);
+  // chassis.drive_distance(85.159);
+  // chassis.turn_to_angle(180);
+  // chassis.drive_distance(-11.887);
+  // chassis.turn_to_angle(-90);
+  // LeftDriveSmart.setVelocity(67,percent);
+  // RightDriveSmart.setVelocity(67,percent);
+  // chassis.set_drive_exit_conditions(1.5, 300, 500);
+  // chassis.drive_distance(-11.16);
+  // outtakeMotor.spin(forward, 100, percent);
+  // intakeMotor.spin(forward, 100, percent);
+  // wait(2, seconds);
+  // outtakeMotor.stop();
+  // chassis.set_drive_exit_conditions(1.5, 300, 5000);
+  // LeftDriveSmart.setVelocity(100,percent);
+  // RightDriveSmart.setVelocity(100,percent);
+  // chassis.drive_distance(18);
+  // matchloader.set(true);
+  // LeftDriveSmart.setVelocity(67,percent);
+  // RightDriveSmart.setVelocity(67,percent);
+  // chassis.set_drive_exit_conditions(1.5, 300, 500);
+  // chassis.drive_distance(11);
+  // wait(1.5, seconds);
+  // intakeMotor.stop();
+  // chassis.drive_distance(-11);
+  // matchloader.set(false);
+  // chassis.drive_distance(-18);
+  // outtakeMotor.spin(forward, 100, percent);
+  // intakeMotor.spin(forward, 100, percent);
+  // //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
 }
 
 void autonomous(void) {
@@ -659,7 +682,13 @@ void usercontrol(void) {
     outputblocker.set(!outputblocker_status);
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
+  if (Controller.ButtonY.pressing()) {
+    descorer_status = !descorer_status;
+    waitUntil(!Controller.ButtonY.pressing());
   }
+  descorer.set(!descorer_status);     
+  }
+
 }
 
 //
