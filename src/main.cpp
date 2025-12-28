@@ -593,7 +593,7 @@ void skills() {
 }
 
 void autonomous(void) {
- leftMiddle();
+ skills();
 }
 
 void profiling() {
