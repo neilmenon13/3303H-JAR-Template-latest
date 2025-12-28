@@ -519,7 +519,7 @@ void skills() {
   intakeMotor.stop();
   outtakeMotor.stop():
   LeftDriveSmart.setVelocity(50,percent);
-  RightDriveSmart.setVelocity(50,percent)
+  RightDriveSmart.setVelocity(50,percent);
   chassis.drive_distance(15.515);
   chassis.turn_to_angle(0);
   chassis.drive_distance(45.26);
@@ -581,7 +581,7 @@ void skills() {
   intakeMotor.spin(forward, 100, percent);
   wait(2,seconds);
   intakeMotor.stop();
-  outtakeMotor.stop():
+  outtakeMotor.stop();
   chassis.drive_distance(12.815);
   chassis.turn_to_angle(0);
   chassis.drive_distance(46.26);
