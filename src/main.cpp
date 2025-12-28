@@ -459,6 +459,7 @@ void skills() {
   // wait(2, seconds);
   // outtakeMotor.stop();
   // intakeMotor.stop();
+  
   // //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
 
   chassis.set_drive_constants(9, 1.5, 0, 10, 0);
@@ -481,6 +482,7 @@ void skills() {
   chassis.turn_to_angle(0);
   chassis.drive_distance(11.187);
   chassis.turn_to_angle(-90);
+  wait(0.2, seconds);
   chassis.drive_distance(85.158);
   chassis.turn_to_angle(180);
   chassis.drive_distance(11.187);
@@ -501,15 +503,93 @@ void skills() {
   LeftDriveSmart.setVelocity(67,percent);
   RightDriveSmart.setVelocity(67,percent);
   chassis.set_drive_exit_conditions(1.5, 300, 500);
-  chassis.drive_distance(11);
+  chassis.drive_distance(10);
   wait(1.5, seconds);
   intakeMotor.stop();
-  chassis.drive_distance(-11);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(-10);
   matchloader.set(false);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
   chassis.drive_distance(-18);
   outtakeMotor.spin(forward, 100, percent);
   intakeMotor.spin(forward, 100, percent);
+  wait(2,seconds);
+  intakeMotor.stop();
+  outtakeMotor.stop():
+  LeftDriveSmart.setVelocity(50,percent);
+  RightDriveSmart.setVelocity(50,percent)
+  chassis.drive_distance(15.515);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(45.26);
+  
   //* END OF FIRST HALF OF SKILLS DRIVE COURSE *//
+  
+  chassis.set_drive_constants(9, 1.5, 0, 10, 0);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(47.26);
+  chassis.turn_to_angle(90);
+  matchloader.set(true);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(11.287);
+  intakeMotor.spin(forward, 100, percent);
+  wait(1.5, seconds);
+  chassis.drive_distance(-11.287);
+  chassis.set_drive_exit_conditions(1.5, 300, 5000);
+  matchloader.set(false);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(11.187);
+  chassis.turn_to_angle(-90);
+  wait(0.2, seconds);
+  chassis.drive_distance(85.158);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(11.187);
+  chassis.turn_to_angle(-90);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(-9.36);
+  outtakeMotor.spin(forward, 100, percent);
+  intakeMotor.spin(forward, 100, percent);
+  wait(2, seconds);
+  outtakeMotor.stop();
+  chassis.set_drive_exit_conditions(1.5, 300, 5000);
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(18);
+  matchloader.set(true);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.set_drive_exit_conditions(1.5, 300, 500);
+  chassis.drive_distance(10);
+  wait(1.5, seconds);
+  intakeMotor.stop();
+  LeftDriveSmart.setVelocity(100,percent);
+  RightDriveSmart.setVelocity(100,percent);
+  chassis.drive_distance(-10);
+  matchloader.set(false);
+  LeftDriveSmart.setVelocity(67,percent);
+  RightDriveSmart.setVelocity(67,percent);
+  chassis.drive_distance(-18);
+  outtakeMotor.spin(forward, 100, percent);
+  intakeMotor.spin(forward, 100, percent);
+  wait(2,seconds);
+  intakeMotor.stop();
+  outtakeMotor.stop():
+  chassis.drive_distance(12.815);
+  chassis.turn_to_angle(0);
+  chassis.drive_distance(46.26);
+  chassis.turn_to_angle(-90);
+  outtakeMotor.spin(forward, 100, percent);
+  intakeMotor.spin(forward, 100, percent);
+  chassis.drive_distance(25);
+  
 }
 
 void autonomous(void) {
